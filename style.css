@@ -1,0 +1,121 @@
+body {
+  height: 100vh;
+  width: 100%;
+  background: linear-gradient(to bottom, #e2eaf8 0%, #fce7ec);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.container {
+  display: flex;
+  justify-content: center;
+  width: 500px;
+  max-width: 100%; /* 부모요소보다 사이즈가 크지 않도록 */
+  height: auto; /*  내용물에 따라 높이가 조절되도록 */
+  box-sizing: border-box; /* 테두리와 내용의 크기를 함께 고려하도록 */
+  border: none;
+  border-radius: 7px;
+  background-color: #ffffff;
+}
+
+.wrapper {
+  width: 100%;
+}
+
+header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.today {
+  color: #c466ea;
+}
+
+.plus {
+  display: flex;
+  position: relative;
+  left: 210px;
+  bottom: 10px;
+  cursor: pointer;
+}
+
+main {
+  border: solid 2px rgb(209, 207, 207);
+  border-radius: 7px;
+  margin: 0px 20px 20px 20px;
+  background: repeating-linear-gradient(
+      to bottom,
+      transparent 0,
+      transparent 18px,
+      #f1f1f1 18px,
+      #f1f1f1 20px
+    ),
+    repeating-linear-gradient(
+      to right,
+      transparent 0,
+      transparent 18px,
+      #f1f1f1 18px,
+      #f1f1f1 20px
+    );
+}
+
+.list {
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+}
+
+.addList {
+  margin: 20px;
+  display: flex;
+}
+
+.inputContainer {
+  display: flex;
+  align-items: center;
+}
+
+.fa-square-check {
+  color: rgb(201, 201, 201);
+}
+
+input {
+  width: 350px;
+  height: 35px;
+  border: solid 2px #dfbef9;
+  border-radius: 7px;
+}
+input:focus {
+  border: none;
+  outline-color: #bfbef9;
+}
+
+#addTodoBtn {
+  border: none;
+  border-radius: 100%;
+  width: 45px;
+  height: 45px;
+  background-color: #dfbef9;
+  color: #ffffff;
+  margin-left: 15px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.fa-square {
+  margin-right: 10px;
+  padding-bottom: 15px;
+}
+
+.list .fa-trash-can {
+  position: absolute;
+  right: 190px;
+  color: #a2a2a2;
+  cursor: pointer;
+}
+
+.fa-trash-can:hover {
+  color: #666666;
+}
