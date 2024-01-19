@@ -29,8 +29,7 @@ const onInput = (e) => {
   input.value = e.target.value;
 };
 
-let colorIndex = 0; // 초기 컬러 인덱스
-
+let colorIndex = 0;
 const colorOptions = [
   "#b6e28f",
   "#f6e988",
@@ -39,7 +38,7 @@ const colorOptions = [
   "#cddeff",
   "#e8cdff",
 ];
-const getRandomColor = () => {
+const getColor = () => {
   const color = colorOptions[colorIndex];
   colorIndex = (colorIndex + 1) % colorOptions.length; // 다음 컬러 인덱스 계산
   return color;
@@ -50,8 +49,9 @@ const onClickAddTodoBtn = () => {
   if (newTodo.value === "") {
     alert("내용을 입력해주세요.");
   } else {
-    const randomColor = getRandomColor();
+    const textColor = getColor();
     const todo = document.createElement("div");
+    todo.setAttribute("class", "todo");
 
     checkBox = document.createElement("i");
     checkedBox = document.createElement("i");
@@ -64,7 +64,7 @@ const onClickAddTodoBtn = () => {
 
     text = document.createElement("span");
     text.setAttribute("class", "text");
-    text.style.background = `linear-gradient(to bottom, transparent 50%, ${randomColor} 50%)`;
+    text.style.background = `linear-gradient(to bottom, transparent 50%, ${textColor} 50%)`;
 
     text.innerHTML = newTodo.value;
 
@@ -74,21 +74,17 @@ const onClickAddTodoBtn = () => {
   }
 };
 
-// 체크표시하기
 const onClickCheckTodo = (e) => {
-  // 클릭한 대상이 i 요소이고 fa-regular 클래스를 가지고 있을 때
   if (e.target.tagName === "I" && e.target.classList.contains("fa-regular")) {
-    const checkbox = e.target;
+    const target = e.target;
 
-    // 체크 및 언체크를 토글
-    checkbox.classList.toggle("fa-square");
-    checkbox.classList.toggle("fa-square-check");
+    target.classList.toggle("fa-square");
+    target.classList.toggle("fa-square-check");
 
     // 여기서 e.target은 i 요소이므로 부모 요소를 찾아서 처리
-    const todoItem = checkbox.parentElement;
-
+    const todoItem = target.closest("div");
     const text = todoItem.querySelector(".text");
-    if (checkbox.classList.contains("fa-square-check")) {
+    if (target.classList.contains("fa-square-check")) {
       text.style.color = "rgb(201, 201, 201)";
       text.style.textDecoration = "line-through ";
 
@@ -101,7 +97,7 @@ const onClickCheckTodo = (e) => {
     e.target.tagName === "I" &&
     e.target.classList.contains("fa-trash-can")
   ) {
-    const todoItem = e.target.parentElement;
+    const todoItem = e.target.closest("div");
     todoItem.remove();
   }
 };
@@ -110,7 +106,7 @@ plus.addEventListener("click", onClickPlusBtn);
 minus.addEventListener("click", onClickMinusBtn);
 addTodoBtn.addEventListener("click", onClickAddTodoBtn);
 input.addEventListener("input", onInput);
-list.addEventListener("click", onClickCheckTodo, false);
+list.addEventListener("click", onClickCheckTodo);
 
 // 심화
 // - 정렬

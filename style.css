@@ -109,9 +109,21 @@ input:focus {
   padding-bottom: 15px;
 }
 
-.list .fa-trash-can {
+/* 
+아이콘인 'fa-trash-can'이 부모 컨테이너인 'todo' 안에서 유지되도록 하려면, 
+'todo'를 상대적 위치로 설정하고, 
+그 안에서 아이콘에 대한 절대 위치를 사용해야 한다.
+또한 부모 컨테이너에 'overflow: hidden;' 속성을 설정하여 아이콘이 넘치지 않도록 한다.
+*/
+
+.todo {
+  position: relative;
+  overflow: hidden;
+}
+
+.todo .fa-trash-can {
   position: absolute;
-  right: 190px;
+  right: 0;
   color: #a2a2a2;
   cursor: pointer;
 }
